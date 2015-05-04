@@ -14,7 +14,7 @@ function search(query){
             console.log('ajax complete');
         },
         success: function(data){
-
+            $('.display').addClass('well');
             console.log(data);
             var avatar = data.avatar_url;
             console.log(data.avatar_url);
@@ -45,6 +45,8 @@ function searchRepos (data){
             console.log('ajax complete');
         },
         success: function(array){
+            $('.repoNames').append("<h2>Public Repos:</h2>");
+            $('.repoNames').css("padding", "10px");
             for (var i =0; i < array.length; i++ ){
                 $(".repoNames").append("<p><a href='"+array[i].html_url+"'>Name: "+array[i].name+"</a></p>");
                 $(".repoNames").append("<p>Description: "+array[i].description+"</p>");
