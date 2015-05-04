@@ -25,6 +25,31 @@ function search(query){
             $(".pageLink").attr("href", link);
             $(".following").append("<p>Followers: "+data.followers+"</p>");
             $(".following").append("<p>Following: "+data.following+"</p>");
+            searchRepos(data);
+        },
+        error: function() {
+            alert("User not found");
+        }
+    });
+
+}
+
+
+function searchRepos (data){
+    $.ajax ({
+        type: 'GET',
+        dataType: 'json',
+        crossDomain: true,
+        url: data.repos_url + '?client_id=f8a4b95805c9804c9eb7&client_secret=4b1bff35a5b8b802fe4bb4e1204afd2f56fc8d8d',
+        complete: function() {
+            console.log('ajax complete');
+        },
+        success: function(array){
+            for (var i =0; i < array.length; i++ ){
+                $(".repoNames").append("<p><a href='"+array[i].html_url+"'>Name: "+array[i].name+"</a></p>");
+                $(".repoNames").append("<p>Description: "+array[i].description+"</p>");
+
+            }
 
         },
         error: function() {
@@ -33,6 +58,10 @@ function search(query){
     });
 
 }
+
+
+
+
 
 $(document).ready(function(){
     //search("tracyfuller");
