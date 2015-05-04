@@ -23,6 +23,12 @@ function search(query){
             $(".profileImg").attr("src", avatar);
             $(".userName").text(name);
             $(".pageLink").attr("href", link);
+            $(".following").append("<p>Followers: "+data.followers+"</p>");
+            $(".following").append("<p>Following: "+data.following+"</p>");
+
+        },
+        error: function() {
+            alert("User not found");
         }
     });
 
